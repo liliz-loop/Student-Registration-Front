@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationForm extends JFrame {
+    // UI Components
     private JPanel MainPanel;
     private JLabel lblFirstName;
     private JTextField tfFirstName;
@@ -81,16 +82,19 @@ public class RegistrationForm extends JFrame {
     private JButton btnRegisteredStudents;
     private JLabel lblRegistered;
     private JLabel lblStudentInfo;
+    private JTextArea personalInformationTextArea;
 
     private final StudentManager studentManager;
     private  final StudentService studentService;
+    // Constructor
     RegistrationForm() {
-        studentManager = new StudentManager(100);
-        studentService = new StudentService(100);
+        studentManager = new StudentManager(100); // Initialize StudentManager with capacity 100
+        studentService = new StudentService(100); // Initialize StudentService with capacity 100
+
 
         setContentPane(MainPanel);
         // Wrap MainPanel in a JScrollPane
-        JScrollPane scrollPane = new JScrollPane(MainPanel);
+        JScrollPane scrollPane = new JScrollPane(MainPanel); // Add scrolling capability
 
         // Add the JScrollPane to the JFrame
         setContentPane(scrollPane);
@@ -98,6 +102,8 @@ public class RegistrationForm extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1440, 900);
         setVisible(true);
+
+        // Add event listener to display registered students
 
         JButton btnShowDetails = new JButton("Show Student Details");
 
@@ -124,12 +130,18 @@ public class RegistrationForm extends JFrame {
                     String address = tfAddress.getText();
                     String contactNumber = tfContact.getText();
                     int studentNumber = Integer.parseInt(tfStudentNumber.getText());
+
+                    // Determine academic standing (Regular or Irregular)
                     String academicStanding = rbRegular.isSelected() ? "Regular" : "Irregular"; // Example for radio buttons
+
+                    // Determine Year Level
                     String yearLvl = rb1stYear.isSelected() ? "1st Year"
                             : rb2ndYear.isSelected() ? "2nd Year"
                             : rb3rdYear.isSelected() ? "3rd Year" : "4th Year";
                     String collegeProgram = tfCollegeProgram.getText();
                     String section = tfSection.getText();
+
+                    // Determine ACA (Arts and Culture Affairs) membership
                     String ACA = rbDSA.isSelected() ? "Dangal Singing Ambassadors"
                             : rbDST.isSelected() ? "Dangal Singing Tanghalan"
                             : rbIDDC.isSelected() ? "Indak Dangal Dance Company"
